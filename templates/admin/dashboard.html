@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/admin/dashboaeh.css"> 
+    <title>Dashboard</title>
+    <style>
+        .main{
+            display: flex; 
+            margin-top: 5%;
+            margin-left: 30%;
+        }
+        .container {
+            background-color: rgb(214, 201, 225);
+            margin-right: 100px;
+            justify-content: center; 
+            align-items: center; 
+            width: 40%; /* Đặt chiều rộng cụ thể cho container */
+            height: 150px; 
+            justify-content: center; /* Căn giữa nút bên trong form */
+            align-items: center;
+            align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+            padding: 20px; /* Thêm padding nếu cần */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng nếu cần */
+            border-radius: 10px; /* Bo góc nếu cần */
+        }
+        .container form {
+            background-color: rgb(214, 201, 225);
+            justify-content: center;
+            align-items: center;
+            justify-content: center; /* Căn giữa nút bên trong form *//* Căn giữa nút theo chiều dọc */
+        
+        }
+        .notification {
+    position: relative;
+    display: inline-block;
+}
+
+.dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 10px;
+    width: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
+.button-icon{
+    background-color: rgb(214, 201, 225);
+}
+    </style>
+   
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li> 
+               <form  method="get">
+                <button class="button"><i class="fas fa-screwdriver" style="margin-right: 20px;font-size: 24px; margin-bottom: 40px; color:rgb(70, 70, 138)"></i>ADMIN</buton>
+              </form>
+              </li>
+            <li>  <form action="/dashboard" method="get">
+                <button class="button"><i class="fas fa-window-restore" style="margin-right: 20px;font-size: 24px;"></i>Dashboard</buton>
+              </form>
+              </li>
+            <li>  <form action="/dashboard/users" method="get">
+                <button class="button"><i class="fas fa-user" style="margin-right: 20px;font-size: 24px;"></i> Người Dùng</buton>
+              </form>
+              </li>
+            <li> 
+                 <form action="/dashboard/sukien" method="get">
+                <button class="button"><i class="fa-regular fa-calendar" style="margin-right: 20px;font-size: 24px;"></i> Sự Kiện</buton>
+            </form></li>
+            <li>  <form action="/dashboard/phan_hoi" method="get">
+                <button class="button"><i class="fas fa-bell" style="margin-right: 20px;font-size: 24px;"></i> Thông Báo</buton>
+            </form></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="container">
+            <form action="/dashboard/users" method="get">
+                <button class="button button-icon" > <i class="fas fa-user" style="margin-right: 20px;font-size: 24px;"></i><h2>{{user_count}} Người Dùng</h2> </buton>
+            </form>
+        </div>
+        <div class="container">
+            <form action="/dashboard/thongbao" method="get">
+                <button class="button button-icon"> 
+                    <div class="notification">
+                        <i class="fas fa-bell" style="font-size: 24px;"></i>
+                        <span class="dot"></span>
+                    </div>
+                    <h2>Thông báo chưa xử lí</h2> </buton>
+            </form>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <form action="/dashboard/thongbao" method="get">
+                <button class="button button-icon"> 
+                    <div class="notification"><i class="fas fa-user" style="font-size: 24px;"></i></div>
+                    <h2>Đã xử lí</h2> </buton>
+            </form>
+        </div>
+        <div class="container">
+            <form action="/dashboard/thongbao" method="get">
+                <button class="button button-icon">
+                    <div class="notification"><i class="fas fa-trash-can" style="font-size: 24px;"></i></div><h2>Thùng Rác</h2></buton>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Thêm nút hoặc liên kết để chuyển đến trang /user -->
+
+</body>
+</html>

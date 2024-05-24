@@ -1,0 +1,8 @@
+SpeechRecognition
+python-dotenv
+mysql-connector
+rasa
+# pip install -r requirements.txt
+# conda activate dua_an
+# cd chatbot\simple_ai\FirstProject
+# rasa run --endpoints endpoints.yml --credentia credentials.yml

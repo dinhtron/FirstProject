@@ -1,0 +1,64 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: diem thi
+  steps:
+  - intent: diem_thi
+  - action: utter_diem_thi
+
+- story: lich hoc
+  steps:
+  - intent: lich_hoc
+  - action: utter_lich_hoc
+
+- story: Dia chi
+  steps:
+  - intent: dia_chi
+  - action: utter_dia_chi
+
+- story: thong tin
+  steps:
+  - intent: thong_tin
+  - action: utter_thong_tin
+- story: tu van
+  steps:
+  - intent: tu_van
+  - action: utter_tu_van
+- story: phan hoi
+  steps:
+  - intent: phan_hoi
+  - action: utter_phan_hoi
+
+- story: So luong sv
+  steps:
+  - intent: soluong_sv
+  - action: utter_soluong_sv
+
+- story: hoat dong
+  steps:
+  - intent: su_kien
+  - action: utter_hoat_dong
+
+- story: Khoa
+  steps:
+  - intent: khoa
+  - action: utter_khoa
+- story: thu tuc nhap hoc
+  steps:
+  - intent: thu_tuc_nhap_hoc
+  - action: utter_thu_tuc_nhap_hoc
+- story: hoc phi
+  steps:
+  - intent: hoc_phi
+  - action: utter_hoc_phi
+- story: chuong_trinh dao_tao
+  steps:
+  - intent: chuong_trinh_dao_tao
+  - action: utter_chuong_trinh_dao_tao
+

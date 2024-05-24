@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/static/style2.css">
+    <link rel="stylesheet" href="/static/toolbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <style>
+        .container{
+            margin-bottom: 20px;
+        }
+        .edit-profile-form {
+            
+            display: flex;
+            flex-direction: column;
+            width: 70%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the form on the page */
+            padding: 20px; /* Add padding inside the form */
+            border: 1px solid #ccc; /* Border around the form */
+            border-radius: 5px; /* Optional: rounded corners for the border */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: add a slight shadow */
+        }
+        .edit-profile-form label,
+        .edit-profile-form input,
+        .edit-profile-form button {
+            margin-bottom: 10px;
+        }
+        label{
+            width:20%
+        }
+        .edit-profile-form label {
+            margin-top: 10px;
+        }
+        .edit-profile-form button {
+            align-self: flex-start; /* Align the button to the start of the form */
+        }
+        .li_style{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleToolbarButton" onclick="toggleToolbarVisibility()"><i class="fas fa-bars"></i>
+    </button>
+    <div id="toolbar" class="hidden" >               
+            <form action="/chatbot" method="get" style="margin-bottom: 20px; ">
+                <button type="submit"><i class="fas fa-house-chimney-window" style="margin-right: 20px;font-size: 24px;"></i>Trang chủ</button>
+            </form>
+            <form style="margin-bottom: 20px; font-size: 24px;">
+                <button type="submit"><i class="fas fa-bell" style="margin-right: 20px;font-size: 24px;"></i>Thông báo</button>
+            </form>
+            <form action="/user_phanhoi" method="get" style="margin-bottom: 20px; font-size: 24px;">
+                <button type="submit"><i class="fas fa-pen-fancy" style="margin-right: 20px;font-size: 24px;"></i>Phản hồi</button>
+            </form>
+            <form action="/profile" method="get" style="margin-bottom: 20px; ">
+                <button type="submit"><i class="fas fa-user" style="margin-right: 20px;font-size: 24px;"></i>Người dùng</button>
+            </form>
+            
+            <form action="/logout" method="get" style="margin-bottom: 20px; font-size: 24px;">
+                <button type="submit"><i class="fas fa-right-from-bracket" style="margin-right: 20px;font-size: 24px;"></i>Đăng xuất</button>
+            </form>
+        
+    </div>
+    <div class="container" >
+        <form class="edit-profile-form" action="{{ url_for('profile') }}" method="post">
+            <h2>Thông tin cơ bản</h2>
+              <li class="li_style">
+                <label style="display: inline-block;">Tài Khoản:</label>
+                <input type="text" id="new_username" name="new_username" value="{{ user.username }}" required>
+            </li>
+            <li class="li_style">
+                <label style="display: inline-block;">Tên:</label>
+                <input type="text" value="{{ user.name }}" required>
+            </li>
+           <li class="li_style">
+            <label >Mật Khẩu:</label>
+            <input type="password" id="new_password" name="new_password" required>
+           </li> 
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    <div class="container" >
+        <form class="edit-profile-form" action="{{ url_for('profile') }}" method="post">
+            <h2>Thông tin liên hệ</h2>
+              <li class="li_style">
+                <label style="display: inline-block;">Email: </label>
+                <input type="text"  value="{{ user.email }}" required>
+            </li>
+            <h2>Thông tin liên hệ</h2>
+            <li class="li_style">
+              <label style="display: inline-block;">Số điện thoại: </label>
+              <input type="text"  value="{{ user.phone_number }}" required>
+          </li>
+            
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,129 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+.outer-container {
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100vh; /* Chiều cao của container bằng toàn bộ chiều cao của màn hình */
+    margin: 0 40px; /* Điều chỉnh khoảng cách 2 bên của outer-container */
+}
+
+.inner-container {
+    display: flex;
+    background-color: #95819e; /* Màu nền của container bao */
+    padding: 10px; /* Khoảng cách lề nội dung bên trong container bao */
+    border-radius: 10px; /* Bo tròn góc của container bao */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiển thị đổ bóng cho container bao */
+}
+
+.image-container {
+    flex: 2;
+    margin-bottom: 20px; /* Khoảng cách dưới của hình ảnh */
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    width: 100%; /* Chiều rộng của container */
+    height: 100%; /* Chiều cao của container */
+    
+}
+.login {
+    width:20%
+}
+.login-image {
+    width: 70%; /* Đảm bảo hình ảnh trong image-container có chiều rộng 100% */
+    height: auto; /* Đảm bảo tỷ lệ khung hình bảo toàn */
+    display: block; /* Để tránh khoảng cách dư thừa ở dưới hình ảnh */
+}
+
+.login-form {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+  
+    justify-content: center;
+    align-items: center;
+     /* Màu nền của form */
+    padding: 10px; /* Khoảng cách lề nội dung bên trong form */
+    width: 100%; /* Độ rộng của form */
+    height: 400px; 
+}
+.login{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #d2c6d7;
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     /* Màu nền của form */
+    padding: 10px; /* Khoảng cách lề nội dung bên trong form */
+    border-radius: 30px; /* Bo tròn góc của form */
+
+    height: 500px; 
+}
+
+.login h2 {
+    margin-bottom: 20px; /* Khoảng cách dưới của tiêu đề */
+}
+
+.login label {
+    display: block; /* Hiển thị nhãn label trên một dòng mới */
+    margin-bottom: 10px; /* Khoảng cách dưới của nhãn label */
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 80%; /* Chiều rộng input là 100% của form */
+    padding: 10px; /* Khoảng cách lề bên trong input */
+    margin-bottom: 30px; /* Khoảng cách dưới của input */
+    border: 1px solid #ccc; /* Đường viền input */
+    border-radius: 20px; /* Bo tròn góc của input */
+}
+.login div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px; /* Khoảng cách dưới của mỗi cặp label và input */
+}
+
+.login button[type="submit"] {
+    width: 100%; /* Chiều rộng của nút là 100% của form */
+    padding: 10px; /* Khoảng cách lề bên trong nút */
+    background-color: #7c4caf; /* Màu nền của nút */
+    color: white; /* Màu chữ của nút */
+    border: none; /* Loại bỏ đường viền của nút */
+    border-radius: 20px; /* Bo tròn góc của nút */
+    cursor: pointer; /* Đổi con trỏ khi di chuột qua nút */
+}
+
+.login button[type="submit"]:hover {
+    background-color: #896e85; /* Màu nền của nút khi di chuột qua */
+}
+/* Define keyframes for rotation animation */
+@keyframes rotate-vertical {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Di chuyển hình ảnh lên 20px */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Apply vertical rotation animation to login-image */
+.rotate {
+    animation: rotate-vertical 4s linear infinite; /* Rotate the image vertically continuously for 4 seconds */
+}

@@ -1,0 +1,84 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - dia_chi
+  - bot_challenge
+  - soluong_sv
+  - thong_tin
+  - khoa
+  - chuong_trinh_dao_tao
+  - thu_tuc_nhap_hoc
+  - hoc_phi
+  - diem_thi
+  - lich_hoc
+  - su_kien
+  - phan_hoi
+  - tu_van
+actions:
+- action_utter_greet
+
+
+responses:
+  utter_phan_hoi:
+    - text: "phan_hoi"
+
+  utter_tu_van:
+    - text: "Vui lòng đợi chúng tôi đang kết nối với tư vấn viên."
+  utter_chuong_trinh_dao_tao:
+    - text: "chuong_trinh_dao_tao"
+
+  utter_diem_thi:
+    - text: "diem_thi"
+  utter_hoat_dong:
+    - text: "hoat_dong"
+  utter_lich_hoc:
+    - text: "lich_hoc"
+
+  utter_thu_tuc_nhap_hoc:
+    - text: "thu_tuc_nhap_hoc"
+
+  utter_hoc_phi:
+    - text: "hoc_phi"
+
+  utter_greet:
+  - text: "Xin chào, bạn có khỏe không?"
+      
+
+  utter_goodbye:
+  - text: "Tạm biệt"
+
+  utter_iamabot:
+  - text: "Tôi là một chatbot hỗ trợ người dùng."
+
+  utter_dia_chi:
+  - text: "Địa chỉ trường : 54 Nguyễn Lương Bằng, Hoà Khánh Bắc, Liên Chiểu, Đà Nẵng."
+
+  utter_soluong_sv:
+  - text: "Hơn 15.000 SV"
+
+  utter_thong_tin:
+  - text: "Trường Đại học Bách khoa là một trong ba Trường Đại học Bách khoa của Việt Nam giữ vai trò là trung tâm đào tạo cán bộ kỹ thuật công nghệ và các nhà quản lý có trình độ cao, đồng thời là trung tâm nghiên cứu khoa học và chuyển giao công nghệ có vai trò chủ đạo trong việc triển khai, ứng dụng công nghệ tiên tiến phục vụ cho sự nghiệp công nghiệp hóa, hiện đại hóa đất nước, đặc biệt là khu vực miền Trung - Tây Nguyên.."
+
+  utter_khoa:
+  - text: "KHOA: 
+        1. Cơ khí
+        2. Cơ khí Giao thông
+        3. Công nghệ Nhiệt - Điện lanh
+        4. Công nghệ Thông tin
+        5. Điện
+        6. Điện tử - Viễn thông
+        7. Hóa
+        8. Sư phạm Kỹ thuật
+        9. Xây dựng Cầu Đường
+        10. Xây dựng Dân dụng và Công nghiệp
+        11. Xây dựng Thủy lợi Thủy điện
+        12. Quản lý Dự án
+        13. Môi trường
+        14. Kiến Trúc
+        15. Trung tâm Xuất sắc
+        16. Trung tâm đào tạo kỹ sư chất lượng cao (PFIEV)"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+<div class="outer-container">
+    <div class="inner-container">
+        <div class="image-container">
+            <img src="https://png.pngtree.com/png-clipart/20230429/original/pngtree-robot-artificial-intelligence-technology-transparent-png-image_9123453.png" alt="Login Image" class="login-image rotate">
+        </div>
+        <form action="/login" method="POST" class="login-form">
+            <h1>Chào mừng đến với Bot thám tử </h1>
+            <div class="login">
+                <h2>Đăng Nhập</h2>
+                <input type="text" id="username" name="username" placeholder="Tên đăng nhập" required>
+                <input type="password" id="password" name="password"  placeholder="Mật khẩu" required>
+                <div>
+                    <button type="submit">Đăng Nhập</button>
+                </div>
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+                {% if error %}
+                <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            </div>
+         
+        </form>
+    </div>
+</div>
+
+  
+
+</body>
+</html>

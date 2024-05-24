@@ -1,0 +1,115 @@
+<!-- templates/user_phanhoi.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/static/style2.css"> -->
+    <link rel="stylesheet" href="/static/toolbar.css">
+    <link rel="stylesheet" href="/static/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <title>User Phản Hồi</title>
+    <style>
+         .container {
+            background-color: rgb(214, 201, 225);
+            margin-left: 30%;
+            margin-bottom: 10px;
+            justify-content: center; 
+            align-items: center; 
+            width: 40%; /* Đặt chiều rộng cụ thể cho container */
+            height: 150px; 
+            justify-content: center; /* Căn giữa nút bên trong form */
+            align-items: center;
+            align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+            padding: 20px; /* Thêm padding nếu cần */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng nếu cần */
+            border-radius: 10px; /* Bo góc nếu cần */
+        }
+     
+
+.feedback-item li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.name {
+    font-weight: bold;
+    color: #333;
+}
+
+.message {
+    color: #555;
+}
+
+.status {
+    font-style: italic;
+    color: #999;
+}
+
+/* Additional styling for different statuses */
+.status:contains('Chưa xử lý') {
+    color: red;
+}
+
+.status:contains('Đang xử lý') {
+    color: orange;
+}
+
+.status:contains('Đã xử lý xong') {
+    color: green;
+}
+
+.status:contains('Lỗi: Trạng thái không xác định') {
+    color: purple;
+}
+    </style>
+</head>
+<body>
+    <button id="toggleToolbarButton" onclick="toggleToolbarVisibility()"><i class="fas fa-bars"></i>
+    </button>
+    <div id="toolbar" class="hidden" >               
+            <form action="/chatbot" method="get" style="margin-bottom: 20px; ">
+                <button type="submit"><i class="fas fa-house-chimney-window" style="margin-right: 20px;font-size: 24px;"></i>Trang chủ</button>
+            </form>
+            <form style="margin-bottom: 20px; font-size: 24px;">
+                <button type="submit"><i class="fas fa-bell" style="margin-right: 20px;font-size: 24px;"></i>Thông báo</button>
+            </form>
+            <form action="/user_phanhoi" method="get" style="margin-bottom: 20px; font-size: 24px;">
+                <button type="submit"><i class="fas fa-pen-fancy" style="margin-right: 20px;font-size: 24px;"></i>Phản hồi</button>
+            </form>
+            <form action="/profile" method="get" style="margin-bottom: 20px; ">
+                <button type="submit"><i class="fas fa-user" style="margin-right: 20px;font-size: 24px;"></i>Người dùng</button>
+            </form>
+            
+            <form action="/logout" method="get" style="margin-bottom: 20px; font-size: 24px;">
+                <button type="submit"><i class="fas fa-right-from-bracket" style="margin-right: 20px; font-size: 24px;"></i>Đăng xuất</button>
+            </form>
+        
+    </div>
+    <div class="sidebar">
+        <ul>
+            {% for item in feedback %}
+              <div class="container">
+                <div class="feedback-item">
+                    <li class="name">{{ item.name_phanhoi }}</li>
+                    <li class="message">{{ item.message }}</li>
+                    {% if item.trangthai == 1 %}
+                        <li class="status">Chưa xử lý</li>
+                    {% elif item.trangthai == 2 %}
+                        <li class="status">Đang xử lý</li>
+                    {% elif item.trangthai == 3 %}
+                        <li class="status">Đã xử lý xong</li>
+                    {% else %}
+                        <li class="status">Lỗi: Trạng thái không xác định</li>
+                    {% endif %}
+                </div>
+           
+              </div>
+             
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

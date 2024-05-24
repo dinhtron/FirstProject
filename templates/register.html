@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    
+    <div class="outer-container">
+        <div class="inner-container">
+            <div class="image-container">
+                <img src="https://png.pngtree.com/png-clipart/20230429/original/pngtree-robot-artificial-intelligence-technology-transparent-png-image_9123453.png" alt="Login Image" class="login-image rotate">
+            </div>
+            <form action="/register" method="POST" class="login-form">
+                <h1>Chào mừng đến với hệ thống </h1>
+                <div class="login">
+                    
+                    <h2>Đăng kí</h2>
+                 
+                    <input type="text" id="username" name="username" placeholder="Tên đăng nhập" required>
+                  
+       
+                    <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                    <div>
+                        <button type="submit">Đăng kí</button>
+                    </div>
+                    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

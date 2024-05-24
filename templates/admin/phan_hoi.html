@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/admin/dashboaeh.css"> 
+    <title>Dashboard</title>
+    <style>
+               .container {
+    display: flex; 
+    width: fit-content; /* Đặt chiều rộng của div theo nội dung bên trong */
+    margin-left: 20%; /* Dịch phần tử div sang phải */
+    margin-top: 0; /* Đảm bảo không có margin phía trên */
+    margin-bottom: 0; /* Đảm bảo không có margin phía dưới */
+}
+
+ h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Thêm khoảng cách dưới cho tiêu đề */
+}
+
+.container ul {
+    width: 300px; 
+    margin-left: 10px; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style-type: none; /* Loại bỏ kiểu đánh dấu mặc định của danh sách */
+    padding: 0; /* Xóa padding mặc định của danh sách */
+}
+
+.container ul li {
+    background-color: #fff; /* Màu nền cho mỗi mục danh sách */
+    padding: 10px; /* Đệm cho mỗi mục danh sách */
+    border-bottom: 1px solid #ccc; /* Gạch gữa các mục danh sách */
+    width: 80%;
+    margin: 0 auto; 
+}
+
+.container ul li:last-child {
+    border-bottom: none; /* Loại bỏ gạch gữa mục danh sách cuối cùng */
+}
+
+   
+    </style>
+   
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li>  <form  method="get">
+                <button class="button"><i class="fas fa-screwdriver" style="margin-right: 20px;font-size: 24px; margin-bottom: 40px; color:rgb(70, 70, 138)"></i>ADMIN</buton>
+              </form>
+              </li>
+            <li>  <form action="/dashboard" method="get">
+                <button class="button"><i class="fas fa-window-restore" style="margin-right: 20px;font-size: 24px;"></i>Dashboard</buton>
+              </form>
+              </li>
+            <li>  <form action="/dashboard/users" method="get">
+                <button class="button"><i class="fas fa-user" style="margin-right: 20px;font-size: 24px;"></i> Người Dùng</buton>
+              </form>
+              </li>
+              <li> 
+                <form action="/dashboard/sukien" method="get">
+               <button class="button"><i class="fa-regular fa-calendar" style="margin-right: 20px;font-size: 24px;"></i> Sự Kiện</buton>
+           </form></li>
+           <li>  <form action="/dashboard/phan_hoi" method="get">
+                <button class="button"><i class="fas fa-bell" style="margin-right: 20px;font-size: 24px;"></i> Thông Báo</buton>
+            </form></li>
+           
+        </ul>
+    </div>
+ 
+    <div class="container">
+        {% for feedback in feedback %}
+        <ul>
+            <li style="font-weight: bold;">Tên : {{feedback.name_phanhoi}}</li>          
+            <li>{{feedback.message}}</li><!-- Assuming 'username' is a column in your users table -->          
+        </ul>
+        {% endfor %}
+    
+
+    </div>
+    <!-- Thêm nút hoặc liên kết để chuyển đến trang /user -->
+
+</body>
+</html>

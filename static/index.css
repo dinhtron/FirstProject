@@ -1,0 +1,395 @@
+/* Overall styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+    background: #fff; 
+    
+  }
+  
+  #chat-container {
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+    background: #fff;   
+    border-radius: 5px;
+    padding: 20px;
+    width: 70%; /* Adjust width as needed */
+    position: relative;
+    left:15%;
+
+  }
+  
+  
+  /* Chat messages area styles */
+  #chat-messages {
+    height: 350px; /* Điều chỉnh chiều cao theo nhu cầu */
+    overflow-y: auto;
+    
+    padding-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+    background: #fff; 
+}
+
+  
+  /* Individual message styles */
+  .message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    clear: both;
+    display: inline-block;
+    max-width: 700px;
+    overflow: auto;
+    border-radius: 20px;
+  }
+  
+  /* Styling for user messages */
+  .user {
+    background-color: #6666FF;
+    float: right;
+    color: #fff;
+  }
+  
+  /* Styling for bot messages */
+  .bot {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+    background: #fff; 
+    float: left;
+    
+  }
+  
+  /* Input field styles */
+  #user-input {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none; 
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0a0909;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  /* Button styles */
+  button {
+    border: none; 
+    padding: 10px 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+    background: #fff; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  /* Styling for toggle button (assuming checkbox) */
+  #toggleButton {
+    display: none;
+  }
+  
+  /* Styling for slider element (assuming it's next to the checkbox) */
+  .slider {
+    position: relative;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  .slider round {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    background-color: #ccc;
+    transition: 0.4s;
+  }
+  
+  .slider:checked .slider round {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+    background: #fff; 
+  }
+  
+  .slider .slider round:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+    transition: 0.3s;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .slider:checked .slider round:after {
+    left: 3px;
+    top: 3px;
+  }
+  /* Container for button and toggle elements */
+form {
+    display: flex; /* Arrange elements horizontally */
+    justify-content: space-between; /* Space elements evenly */
+    align-items: center; /* Align elements vertically */
+    padding: 10px; /* Add some padding */
+  }
+  
+  /* Styling for "Đăng xuất" button */
+  button[type="submit"] {
+    padding: 5px 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0; /* Adjust background color as needed */
+  }
+  
+  /* Hide the checkbox element */
+  #toggleButton {
+    display: none;
+  }
+  
+  /* Styling for slider element */
+  .slider {
+    position: relative;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 26px; /* Adjust width as needed */
+    height: 26px; /* Adjust height as needed */
+  }
+  
+  #logout-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    top: 10px; /* Adjust top margin for desired placement */
+    right: 10px; /* Adjust right margin for desired placement */
+  }
+ 
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+#overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px; /* Tăng padding lên 40px */
+  border: 1px solid #ccc;
+  width: 80%; /* Tăng chiều rộng lên 80% */
+  max-width: 600px; /* Giới hạn chiều rộng tối đa là 600px */
+  height: 80%; /* Tăng chiều cao lên 80% */
+  max-height: 400px; /* Giới hạn chiều cao tối đa là 400px */
+}
+
+.overlay-button {
+  padding: 0px 0px;
+  text-decoration: underline; /* Gạch chân nội dung */
+  border: none; /* Xóa viền */
+  background-color: transparent; /* Xóa màu nền */
+  cursor: pointer; /* Thêm kiểu con trỏ khi di chuột vào */
+  color: blue; /* Màu chữ */
+}
+.topbar {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Màu nền của thanh công cụ */
+  color: #000; /* Màu chữ */
+  padding: 30px 0; /* Khoảng cách giữa các phần tử bên trong */
+}
+
+.container {
+  max-width: 1200px; /* Chiều rộng tối đa của thanh công cụ */
+  margin: 0 auto; /* Canh giữa thanh công cụ */
+  display: flex;
+  justify-content: space-between; /* Canh các phần tử theo khoảng cách đều nhau */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.container a {
+  color: #fff; /* Màu chữ của các liên kết */
+  text-decoration: none; /* Loại bỏ gạch chân */
+  padding: 10px 20px; /* Khoảng cách giữa các liên kết */
+  transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.container a:hover {
+  background-color: #555; /* Màu nền khi hover */
+}
+
+      /* CSS cho gợi ý câu hỏi */
+      #suggestions-container {
+          background-color: #fff;
+          float: left;
+          color: white;
+          display: flex;
+          justify-content: center;
+          flex-wrap: nowrap; /* Đảm bảo các gợi ý không wrap sang hàng mới */
+          overflow-x: auto; /* Hiển thị thanh cuộn ngang nếu nội dung vượt quá kích thước */
+          margin-top: 10px; 
+          padding-bottom: 10px; 
+      }
+      #suggestions-container button {
+          background-color:#fff;
+          margin: 10px;
+          border-radius: 20px;
+          white-space: nowrap; /* Ngăn các gợi ý wrap sang hàng mới */
+          padding: 10px 20px; /* Điều chỉnh lề để tạo khoảng cách thoải mái xung quanh văn bản trong nút */
+      }
+
+      #suggestions-container1 {
+         
+          color: white;
+          margin-left:30;
+          display: flex;
+          justify-content: center;
+          flex-wrap: nowrap; /* Đảm bảo các gợi ý không wrap sang hàng mới */
+          overflow-x: auto; /* Hiển thị thanh cuộn ngang nếu nội dung vượt quá kích thước */
+          margin-top: 10px;
+          border-radius: 20px;
+          padding-bottom: 10px; /* Khoảng cách dưới phần gợi ý */
+      }
+      #suggestions-container1 button {
+        background-color: #fff;
+        margin: 5px;
+        white-space: nowrap; /* Ngăn các gợi ý wrap sang hàng mới */
+        border-radius: 20px; /* Độ cong của góc nút */
+        padding: 10px 20px; /* Điều chỉnh lề để tạo khoảng cách thoải mái xung quanh văn bản trong nút */
+        border: 2px solid rgb(138, 113, 159); /* Thêm viền với màu và độ dày tùy ý */
+    }
+    
+      /* CSS cho tin nhắn của bot */
+      .bot-message {
+          background-color: #fff;
+          float: left;
+          color: white;
+          padding: 10px;
+          border-radius: 10px;
+          margin-bottom: 5px;
+      }
+      
+      .top-button {
+          font-size: 20px;
+          position: fixed;
+          top: 10px; /* Distance from the top */
+          right: 20px;/* Distance from the left */
+          padding: 8px 12px;
+          background-color: #fff;
+          color: #000;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+      }
+      
+      .top-button1 {
+          font-size: 20px;
+          position: fixed;
+          top: 10px; /* Distance from the top */
+          right: 80px;/* Distance from the left */
+          padding: 8px 12px;
+          background-color: #fff;
+          color: #000;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+      }
+      
+      .top-button2 {
+          font-size: 20px;
+          position: fixed;
+          top: 10px; /* Distance from the top */
+          right: 140px;/* Distance from the left */
+          padding: 8px 12px;
+          background-color: #fff;
+          color: #000;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+      }
+      .top-button3 {
+        font-size: 20px;
+        position: fixed;
+        top: 10px; /* Distance from the top */
+        right: 220px;/* Distance from the left */
+        padding: 8px 12px;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+    }
+      .hello {
+          box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
+          display: flex;
+          position: fixed;
+          top: 0px; /* Distance from the top */
+          left: 70px;/* Distance from the left */
+          padding: 8px 12px;
+          background-color: transparent;
+          color: #000;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 18px;
+          
+
+      }
+      /* thong báo */
+      .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ mờ 50% */
+      display: none; /* Ẩn mặc định */
+      justify-content: center;
+      align-items: center;
+  }
+  .popup-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+  }
+  .popup-overlay.active {
+      display: flex; /* Hiển thị khi có class active */
+  }
+  .icon-container {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #747d87; /* Màu viền */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent; /* Nền trong suốt */
+  }
+  .icon-container i {
+      font-size: 20px; /* Kích thước của biểu tượng */
+      color: #353267; /* Màu của biểu tượng */
+  }
+  .first-button {
+    border: 2px solid rgb(148, 102, 145);
+    border-radius: 5px;}

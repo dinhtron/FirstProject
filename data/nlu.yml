@@ -1,0 +1,109 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Xin chào
+    - Hello
+    - Hi
+    - Chào bạn
+    - Xin chào
+- intent: tu_van
+  examples: |
+    - Kết nối tư vấn viên
+    - Cho tôi gặp tư vấn viên
+    - Cho tôi gặp con người
+    - gặp tư vấn
+    - Tôi muốn gặp con người
+
+- intent: diem_thi
+  examples: |
+    - Cho biết điểm thi 
+    - Điểm thi môn là bao nhiêu?
+    - Xin kiểm tra điểm 
+    - Tôi muốn biết điểm thi 
+
+- intent: phan_hoi
+  examples: |
+    - muốn gửi phản hồi 
+    - muốn khiếu nại
+    - muốn gửi phản ảnh
+    - phản hồi
+    - phản ánh
+    - gửi phản hồi
+
+- intent: su_kien
+  examples: |
+    - hoạt động
+    - sự kiên
+    - hoat động cộng dồng
+    - có sự kiện nào không
+    
+- intent: lich_hoc
+  examples: |
+    - Cho biết lịch học 
+    - Lịch học của lớp 
+    - Xin thông tin về lịch học
+    - Tôi cần biết lịch học 
+
+
+- intent: goodbye
+  examples: |
+    - good by
+    - Tạm biệt
+    - bye
+    - goodbye
+- intent: dia_chi
+  examples: |
+    - Địa chỉ
+    - Địa chỉ trường ở đâu
+    - Trụ sở trường ở đâu
+    - trường nằm ở đại chỉ nào
+
+- intent: thong_tin
+  examples: |
+    - Thông tin về trường
+    - Tên trường
+    - Thông tin
+
+- intent: soluong_sv
+  examples: |
+    - Trường học của bạn có bao nhiêu sinh viên
+    - Số lượng sinh viên
+    - Số sinh viên đang học
+    - Có bao nhiêu sinh viên
+- intent: khoa 
+  examples: |
+    - Trường học có những khoa/ngành đào tạo nào
+    - Khoa đào tạo
+    - ngành đào tạo
+    - Có những khoa nào
+    - Đào tạo những ngành nào
+
+- intent: bot_challenge
+  examples: |
+    - bạn có phải là một bot không
+    - bạn có phải là con người không
+    - tôi đang nói chuyện với một bot phải không
+    - tôi đang nói chuyện với con người phải không
+
+- intent: chuong_trinh_dao_tao
+  examples: |
+    - Chương trình đào tạo
+    - Các chương trình đào tạo của trường là gì
+    - Thông tin về chương trình đào tạo
+    - Lĩnh vực trường đào tạo
+
+- intent: thu_tuc_nhap_hoc
+  examples: |
+    - Làm thế nào để tôi có thể đăng ký nhập học?
+    - Quy trình nhập học là gì?
+    - Bạn có thể hướng dẫn tôi qua quy trình nhập học không?
+    - Tôi cần làm gì để bắt đầu quá trình nhập học?
+
+- intent: hoc_phi
+  examples: |
+    - Học phí cho các khóa học của bạn là bao nhiêu?
+    - Đóng học phí như thế nào?
+    - Bạn có thể cho tôi thông tin về học phí được không?
+    - Học phí có thể thanh toán bằng phương thức nào?

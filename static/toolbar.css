@@ -1,0 +1,54 @@
+
+#toolbar {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 20%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;}
+
+#toolbar span {
+    margin-right: 10px;
+}
+
+#toolbar button {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0); 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    color: #000; /* Màu chữ cho các nút */
+}
+
+#toolbar.hidden {
+    display: none;
+}
+
+#toggleToolbarButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background-color: #ccc; /* Màu nền cho nút bấm */
+    color: #000; /* Màu chữ cho nút bấm */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+#toolbar form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}

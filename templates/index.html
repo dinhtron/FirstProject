@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/index.css"> 
+    <link rel="stylesheet" href="/static/toolbar.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script> 
+    <script src="{{ url_for('static', filename='fetchResponse.js') }}"></script> 
+    <title>Voice Chatbot</title>
+    <style>
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng để tạo hiệu ứng nổi bật */
+    width: 650px; /* Điều chỉnh kích thước theo ý muốn */
+    text-align: center; /* Căn giữa nội dung */
+}
+
+.popup-content form {
+    width: 100%;
+    display: block;
+}
+
+.popup-content .form-group {
+    margin-bottom: 15px; /* Khoảng cách giữa các nhóm phần tử */
+}
+
+.popup-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.popup-content input[type="text"],
+.popup-content textarea {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup-content textarea {
+    height: 100px; /* Điều chỉnh chiều cao của textarea */
+}
+
+.popup-content .button-container {
+    display: flex;/* Đảm bảo hai nút nằm cách xa nhau */
+}
+
+.popup-content .button-container button {
+    background-color: rgb(111, 94, 125) ;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup-content .button-container button:hover {
+    background-color: rgb(175, 158, 190); /* Màu nền hover */
+}
+
+#responseMessage {
+    margin-top: 10px;
+    color:rgb(175, 158, 190); /* Màu chữ thông báo thành công */
+}
+
+#responseMessage.error {
+    color: #f44336; /* Màu chữ thông báo lỗi */
+}
+.ellipsis {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 30px;
+        }
+        .ellipsis div {
+            width: 6px;
+            height: 6px;
+            background-color: black;
+            border-radius: 50%;
+            animation: bounce 1.2s infinite;
+        }
+        .ellipsis div:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .ellipsis div:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="topbar">
+        <div class="container">
+           <button id="toggleToolbarButton" onclick="toggleToolbarVisibility()"><i class="fas fa-bars"></i></button>
+           <button class="hello" ><div class="icon-container"><i class="fas fa-robot"></i></div > <div style="margin-left: 5px; margin-top: 10px;">Bot Thám Tử</div></button>
+           <button class="top-button1"  onclick="toggleSound()"><div ><span id="sound-status"><i class="fas fa-volume-mute"></i></span></div></button>
+           <button class="top-button2" onclick="updet()">
+            <div><span id="status">Rasa</span></div>
+        </button>
+        
+        </div>
+    </div>
+
+   
+   
+    
+    <div id="toolbar" class="hidden" >        
+        <form action="/chatbot" method="get" style="margin-bottom: 20px; ">
+            <button type="submit"><i class="fas fa-house-chimney-window" style="margin-right: 20px;font-size: 24px;"></i>Trang chủ</button>
+        </form>
+        <form style="margin-bottom: 20px; font-size: 24px;">
+            <button type="submit"><i class="fas fa-bell" style="margin-right: 20px;font-size: 24px;"></i>Thông báo</button>
+        </form>
+        <form action="/user_phanhoi" method="get" style="margin-bottom: 20px; font-size: 24px;">
+            <button type="submit"><i class="fas fa-pen-fancy" style="margin-right: 20px;font-size: 24px;"></i>Phản hồi</button>
+        </form>
+        <form action="/profile" method="get" style="margin-bottom: 20px; ">
+            <button type="submit"><i class="fas fa-user" style="margin-right: 20px;font-size: 24px;"></i>Người dùng</button>
+        </form>
+        
+        <form action="/logout" method="get" style="margin-bottom: 20px; font-size: 24px;">
+            <button type="submit"><i class="fas fa-right-from-bracket" style="margin-right: 20px;font-size: 24px;"></i>Đăng xuất</button>
+        </form>
+    </div>
+    <div id="chat-container">
+        <!-- Tin nhắn từ bot và người dùng -->
+        <div id="chat-messages">
+            <!-- Tin nhắn chào mừng -->
+            <div class="message bot">
+                Xin chào {{user.username}} Tôi là trợ lý ảo của bạn. Hãy hỏi tôi bất cứ điều gì bạn muốn.
+            </div>
+            <div class="message bot" style="background-color: #fff; padding:0px 0px;" >
+                <div id="suggestions-container"></div>
+            </div>
+
+        </div>
+        <!-- Phần hiển thị gợi ý câu hỏi -->
+        <div id="suggestions-container1"></div>
+        
+        <!-- Ô nhập tin nhắn và nút gửi tin nhắn -->
+        <div style="display: flex; align-items: center;">
+            <input type="text" id="user-input" placeholder="Type your message..." style="flex: 1; margin-top: 10px;border: none; " >
+            <button onclick="sendMessage()" style="margin-left: 5px;"><i class="fas fa-paper-plane"></i></button>
+            <button onclick="startRecording()" style="margin-left: 5px;"><i class="fas fa-microphone"></i></button>
+        </div> 
+     
+        <div class="popup-overlay" id="popup-overlay">
+            <div class="popup-content">
+                <p id="itemParagraph"></p>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" placeholder="Nhập tại đây..."></textarea>
+
+                    </div>
+                    <div class="button-container">
+                        <button type="submit">Submit</button>
+                        <button onclick="closePopup()">Đóng</button>
+                    </div>
+                </form>
+                <div id="responseMessage"></div>
+            </div>
+            
+        </div>
+        <div class="popup-overlay" id="popup-overlay1">
+            <div class="popup-content">
+                <h2>Màn hình phụ 2</h2>
+                <p>Nội dung màn hình phụ ở đây...</p>
+                <button onclick="closePopup()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for displaying suggested questions and welcoming user -->
+    <script>
+        
+        function openPopup1() {
+            document.getElementById("popup-overlay1").classList.add("active");
+        }
+
+        function closePopup() {
+            document.getElementById("popup-overlay").classList.remove("active");
+            document.getElementById("popup-overlay1").classList.remove("active");
+        }
+        // Danh sách các câu hỏi gợi ý
+        var suggestedQuestions = [
+            "Phản Hồi",
+            "Hoạt động",
+            "Điểm Thi",
+            "Thông tin",
+        ];
+        
+        // Hiển thị gợi ý câu hỏi khi trang được tải
+        displaySuggestedQuestions();
+        displaySuggestedQuestions1();
+        // Hàm hiển thị gợi ý câu hỏi
+        function displaySuggestedQuestions() {
+            var suggestionsContainer = document.getElementById("suggestions-container");
+            suggestionsContainer.innerHTML = ""; // Xóa các gợi ý trước đó
+
+            // Tạo các nút hoặc dòng văn bản cho các câu hỏi gợi ý
+            suggestedQuestions.forEach(function(question) {
+                var button = document.createElement("button");
+                button.textContent = question;
+                button.onclick = function() {
+                    // Đưa câu hỏi vào ô nhập khi người dùng nhấp vào
+                    document.getElementById("user-input").value = question;
+                    // Gửi tin nhắn
+                    sendMessage();
+                };
+                suggestionsContainer.appendChild(button);
+            });
+        }
+        function displaySuggestedQuestions1() {
+      var suggestionsContainer = document.getElementById("suggestions-container1");
+
+      // Xóa các nút button cũ trước khi thêm mới
+      suggestionsContainer.innerHTML = "";
+
+      // Thêm các button vào phần tử suggestionsContainer
+      suggestedQuestions.forEach(function(question, index) {
+    var button = document.createElement("button");
+    // Kiểm tra xem đây có phải là button đầu tiên không
+    if (index === 0) {
+        button.innerHTML = '<i class="fas fa-pen-nib"></i> ' + question;
+    } 
+    if(index === 1) {
+        button.innerHTML = '<i class="fas fa-person-running"></i> ' + question;
+    }
+    if(index === 2) {
+        button.innerHTML = '<i class="fas fa-book"></i> ' + question;
+    }
+    if(index === 3) {
+        button.innerHTML = '<i class="fas fa-lightbulb"></i> ' + question;
+    }
+    button.onclick = function() {
+        // Đưa câu hỏi vào ô nhập khi người dùng nhấp vào
+        document.getElementById("user-input").value = question;
+        // Gửi tin nhắn
+        sendMessage();
+    };
+    suggestionsContainer.appendChild(button);
+});
+    }
+
+        // Bắt sự kiện khi người dùng nhấn phím
+document.getElementById("user-input").addEventListener("keypress", function(event) {
+    // Kiểm tra xem phím được nhấn có phải là phím Enter không (mã ASCII của phím Enter là 13)
+    if (event.keyCode === 13) {
+        // Ngăn chặn hành động mặc định của trình duyệt khi nhấn Enter trong ô nhập tin nhắn
+        event.preventDefault();
+        // Gửi tin nhắn khi người dùng nhấn Enter
+        sendMessage();
+    }
+});
+
+    </script>
+     <script>
+        $(document).ready(function(){
+            $('#feedbackForm').on('submit', function(event) {
+                event.preventDefault();
+                var name = $('#name').val();
+                var message = $('#message').val();
+                $.ajax({
+                    url: '/submit',
+                    method: 'POST',
+                    data: { name: name, message: message },
+                    success: function(response) {
+                        $('#responseMessage').html('<p>' + response.message + '</p>');
+                        $('#name').val(''); // Xóa nội dung của input name
+                        $('#message').val(''); // Xóa nội dung của textarea
+                    },
+                    error: function(xhr, status, error) {
+                        $('#responseMessage').html('<p>Đã xảy ra lỗi khi gửi phản hồi.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

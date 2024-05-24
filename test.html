@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Messages</title>
+    <style>
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .bot {
+            background-color: #e1f5fe;
+        }
+        .user {
+            background-color: #c8e6c9;
+            text-align: right;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-messages">
+        <!-- Tin nhắn chào mừng -->
+        <div class="message bot">
+            Xin chào {{user.username}} Tôi là trợ lý ảo của bạn. Hãy hỏi tôi bất cứ điều gì bạn muốn.
+        </div>
+        <div class="message bot" style="background-color: #fff; padding:0px 0px;">
+            <div id="suggestions-container"></div>
+        </div>
+    </div>
+
+    <script>
+        let lastBotMessage = null;
+
+        // Hàm kiểm tra và thêm thẻ message mới nếu điều kiện đúng
+        function checkAndAddMessage() {
+            const chatMessages = document.getElementById('chat-messages');
+            const messages = chatMessages.getElementsByClassName('message');
+            
+            if (messages.length > 0) {
+                const lastMessage = messages[messages.length - 1];
+                
+                if (lastMessage.classList.contains('user')) {
+                    const newMessage = document.createElement('div');
+                    newMessage.className = 'message bot';
+                    newMessage.textContent = 'Đây là tin nhắn mới từ bot sau khi user nhắn.';
+                    
+                    // Xóa tin nhắn bot cuối cùng nếu có
+                    if (lastBotMessage !== null) {
+                        lastBotMessage.remove();
+                    }
+                    
+                    // Thêm tin nhắn mới từ bot và lưu lại
+                    chatMessages.appendChild(newMessage);
+                    lastBotMessage = newMessage;
+                }
+            }
+        }
+
+        // Giả sử thêm một tin nhắn của user để kiểm tra
+        function addUserMessage() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = 'Đây là tin nhắn từ user.';
+            chatMessages.appendChild(userMessage);
+            
+            // Gọi hàm kiểm tra và thêm tin nhắn mới
+            checkAndAddMessage();
+        }
+        function remov(){
+            if (lastBotMessage !== null) {
+                lastBotMessage.remove();
+            }
+            
+        }
+        function addBotMessage(){
+            const chatMessages = document.getElementById('chat-messages');
+            const botMessage = document.createElement('div');
+            botMessage.className = 'message bot';
+            botMessage.textContent = 'Đây là tin nhắn từ bot để kiểm tra.';
+            
+            // Xóa tin nhắn bot cuối cùng nếu có
+            remov();
+            // Thêm tin nhắn mới từ bot và lưu lại
+            chatMessages.appendChild(botMessage);
+            lastBotMessage = botMessage;
+        }
+        // Thêm tin nhắn user sau 2 giây để kiểm tra
+        setTimeout(addUserMessage, 2000);
+
+        // Thêm tin nhắn bot sau 4 giây để kiểm tra
+        setTimeout(addBotMessage, 6000);
+    </script>
+</body>
+</html>

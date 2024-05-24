@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Loại bỏ margin mặc định */
+    padding: 0; /* Loại bỏ padding mặc định */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto; /* Thêm thanh cuộn nếu sidebar quá dài */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo sâu cho sidebar */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px; /* Giảm khoảng cách giữa các mục trong danh sách */
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 0; /* Thêm padding để tạo khoảng cách giữa các mục */
+}
+
+.sidebar a:hover {
+    
+    background-color: #e9ecef; /* Tạo màu nền khi di chuột qua */
+}
+
+main {
+    margin-left: 220px; /* Khoảng cách giữa nội dung chính và sidebar */
+    padding: 20px; /* Thêm padding để tạo khoảng cách với viền của sidebar */
+    transition: margin-left 0.3s; /* Hiệu ứng di chuyển nội dung khi mở rộng sidebar */
+}
+
+/* Điều chỉnh kích thước nội dung chính khi sidebar mở rộng */
+.sidebar:hover + main,
+main:hover {
+    margin-left: 200px;
+}
+
+/* Điều chỉnh kích thước nội dung chính khi sidebar thu gọn */
+.sidebar + main:hover {
+    margin-left: 20px;
+}
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+  border: none; 
+}
+
